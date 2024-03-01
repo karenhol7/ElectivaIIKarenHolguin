@@ -1,21 +1,19 @@
-const {response} = require("express");
+const { response } = require("express");
 
 //Temporary storage of tasks
 let tasks = [
+
     {
         id: 1,
-        title: 'Hello',
-        body: 'Bye'
+        body: ''
     },
     {
         id: 2,
-        title: 'Hello',
-        body: 'Bye'
+        body: ''
     },
     {
         id: 3,
-        title: 'Hello',
-        body: 'Bye'
+        body: ''
     }
 ]
 
@@ -36,15 +34,25 @@ const getTaskById = (req, res = response) => {
     } else {
         res.status(404).json({ error: 'Not Found' });
     }
-};
+}
 
 //Create a new task 
 const createNewTask = (req, res = response) => {
-    
+
+    const { body } = req.body;
+    const newTask = {
+        id: tasks.length + 1,
+        body
+    };
+
+    tasks.push(newTask);
+
+    res.status(201).json("Created");
 }
 
 //Export variables
 module.exports = {
     getAllTasks,
-    getTaskById
+    getTaskById,
+    createNewTask
 } 

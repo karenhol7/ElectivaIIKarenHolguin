@@ -1,15 +1,7 @@
 const express = require("express");
-//const { Router } = require("express");
-//const router = Router();
-/*
-router.get('/data', (req, res) => {
-    res.statusCode = 200;
-    res.json({
-        ok: true
-    });
-});
-*/
+
 const app = express();
+app.use(express.json());
 
 app.use('/api/v1', require('./routers/tasksRouter'));
 
